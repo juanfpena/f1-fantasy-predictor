@@ -1,5 +1,39 @@
-[
-    {
-        "url": "https://www.f1fantasytracker.com/drivers-teams.html"
-    }
-]
+{
+  "base": {
+    "url": "https://www.f1fantasytracker.com/drivers-teams.html"
+  },
+  "drivers": [
+    "leclerc",
+    "sainz",
+    "verstappen",
+    "perez",
+    "hamilton",
+    "russell",
+    "alonso",
+    "ocon",
+    "ricciardo",
+    "norris",
+    "bottas",
+    "zhou",
+    "gasly",
+    "tsunoda",
+    "vettel",
+    "stroll",
+    "schumacher",
+    "magnussen",
+    "latifi",
+    "albon"
+  ],
+  "constructors": [
+    "ferrari",
+    "red-bull",
+    "mercedes",
+    "alpine",
+    "mclaren",
+    "alfa-romeo",
+    "alpha-tauri",
+    "aston-martin",
+    "haas",
+    "williams"
+  ]
+}

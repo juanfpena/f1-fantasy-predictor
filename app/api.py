@@ -1,45 +1,31 @@
 from bs4 import BeautifulSoup
 from scripts.html_getter import html_getter
 import warnings
+import json
 
 warnings.filterwarnings('ignore')
 
-if __name__ == '__main__':
-    url = 'https://www.f1fantasytracker.com/drivers-teams.html'
+json_file = open('data/config.json')
+loaded_json = json.load(json_file)
 
-    response = html_getter(url)
+if __name__ == '__main__':
     
-    if response['success']:
-        
-        soup = BeautifulSoup(response['content'], 'html.parser')
-        
-        a_array = soup.findAll('a')
-        
-        refs = []
-        
-        for tag in a_array:
+    drivers = loaded_json['drivers']
+    constructors = loaded_json['constructors']
+    
+    for driver in drivers:
+        player_url = f'https://www.f1fantasytracker.com/{driver}'
+        response = html_getter(player_url)
+    
+        if response['success']:
             
-            test_string = str(tag).split('"')
+            soup = BeautifulSoup(response['content'], 'html.parser')
             
-            for string in test_string:
-                if ".html" in string:
-                    refs.append(string)
-        
-        relevant_refs = refs[8:-7]
-        split = url.split('drivers-teams.html')
-        base_url = ''.join(split)
-        
-        for ref in [relevant_refs[0]]:
+            for i in range(0,24):
+                print(soup.findAll(id=f'Total{i}'))
             
-            player_url = f'https://www.f1fantasytracker.com/{ref}'
+            break
             
-            response = html_getter(player_url)
-            
-            if response['success']:
-                
-                soup = BeautifulSoup(response['content'], 'html.parser')
-                
-                print(soup.prettify())
         
         
     else:
